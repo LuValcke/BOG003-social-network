@@ -42,8 +42,6 @@ input{
     border-color:  #626C66;
     border-radius: 5px;
     padding: 1.5%;
-    
-    
 }
 .login-text{
     color:  #f4f4f4;
@@ -87,5 +85,4 @@ button{
     color: #8B1820;
     cursor:pointer;
     margin-left: 2%;
-
 }
