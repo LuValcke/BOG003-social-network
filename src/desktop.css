@@ -1,0 +1,20 @@
+.login{
+    display: flex;
+    flex-direction: row;
+}
+
+.description{
+    width: 50%;
+    margin: 3% 3% 3% 3%;
+}
+.img-logo{
+    width: 95%; 
+    margin-top: 10%; 
+    margin-bottom: 8%;
+}
+
+.description-text{
+    font-size: 25pt;
+    margin-bottom: 10%;
+    line-height: 2;
+}

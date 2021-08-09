@@ -1,0 +1,13 @@
+.login{
+    display: flex;
+    flex-direction: row;
+}
+
+.description{
+    width: 50%;
+    margin: 3% 3% 3% 3%;
+}
+.description-text{
+    font-size: 20pt;
+    margin-bottom: 10%;
+}
