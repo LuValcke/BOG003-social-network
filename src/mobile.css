@@ -3,76 +3,86 @@
     margin: 0;
     padding: 0;
 }
-  
+
 body {
     background-color: #121212;
     width: auto;
     font-family: 'Montserrat', sans-serif;
 }
-main{
+
+main {
     width: 100%;
 }
-.description{
-    background-color:#F9CB24 ;
+
+.description {
+    background-color: #F9CB24;
     width: 90%;
     margin: 5% 5% 10% 5%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
     border-radius: 5px;
 }
-.img-logo{
-    width: 95%; 
-    margin-top: 10%; 
+
+.img-logo {
+    width: 95%;
+    margin-top: 10%;
     margin-bottom: 5%;
 }
-.description-text{
+
+.description-text {
     font-size: 16pt;
     margin-bottom: 10%;
 }
-.form-login{
+
+.form-login {
     display: flex;
     flex-direction: column;
 }
-input{
+
+input {
     width: 80%;
     margin: auto;
     margin-top: 2%;
     background-color: #2D2E2E;
-    border-color:  #626C66;
+    border-color: #626C66;
     border-radius: 5px;
     padding: 1.5%;
+    color: #f4f4f4;
 }
-.login-text{
-    color:  #f4f4f4;
+
+.login-text {
+    color: #f4f4f4;
     margin-top: 5%;
     margin-left: 10%;
 }
 
-button{
-    background-color:#8B1820;
+button {
+    background-color: #8B1820;
     box-shadow: inset 0px 4px 4px rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     border-style: none;
-    color:#f4f4f4;
+    color: #f4f4f4;
     font-family: 'Montserrat', sans-serif;
     padding: 1.5%;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-#btn-login{
+#btn-login {
     width: 75%;
     margin: auto;
     margin-top: 10%;
 }
-#btn-google{
+
+#btn-google {
     width: 75%;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.links{
-    color:#f4f4f4;
+
+.links {
+    color: #f4f4f4;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -80,9 +90,9 @@ button{
     font-size: 10pt;
     margin-bottom: 10%;
 }
-#register{
-    
+
+#register {
     color: #8B1820;
-    cursor:pointer;
+    cursor: pointer;
     margin-left: 2%;
 }
