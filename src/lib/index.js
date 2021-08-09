@@ -1,6 +1,16 @@
 // aqui exportaras las funciones que necesites
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
+export const createUser = (email, password) => {
+    auth
+        .createUserWithEmailAndPassword(email, password)
 };
+
+export const signIn = (email, password) => {
+    auth
+        .signInWithEmailAndPassword(email, password)
+};
+
+export const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+}
