@@ -1,19 +1,20 @@
-.login{
+.login {
     display: flex;
     flex-direction: row;
 }
 
-.description{
+.description {
     width: 50%;
     margin: 3% 3% 3% 3%;
 }
-.img-logo{
-    width: 70%; 
-    margin-top: 10%; 
+
+.img-logo {
+    width: 70%;
+    margin-top: 10%;
     margin-bottom: 8%;
 }
 
-.description-text{
+.description-text {
     font-size: 28pt;
     margin-bottom: 10%;
     line-height: 2;
@@ -21,42 +22,44 @@
     margin-right: 8%;
 }
 
-.login-text{
+.login-text {
     margin-left: 15%;
     margin-bottom: -5%;
-    margin-top:10%;
+    margin-top: 10%;
     font-size: 15pt;
 }
 
-#email-text{
+#email-text {
     margin-top: 20%;
 }
 
-.form-login{
+.form-login {
     width: 50%;
 }
-input{
+
+input {
     width: 70%;
     margin: auto;
     margin-top: 8%;
     padding: 1.5%;
 }
-button{
+
+button {
     font-size: 15pt;
 }
 
-#btn-login{
+#btn-login {
     width: 65%;
     margin-top: 13%;
 }
-#btn-google{
+
+#btn-google {
     width: 65%;
     margin-top: 6%;
     margin-bottom: 2%;
 }
 
-.links{
+.links {
     margin-top: 5%;
     margin-bottom: 16%;
 }
-
