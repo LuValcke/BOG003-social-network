@@ -10,7 +10,7 @@
 
 .img-logo {
     width: 70%;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-bottom: 8%;
 }
 
@@ -20,46 +20,44 @@
     line-height: 2;
     margin-left: 8%;
     margin-right: 8%;
+    margin-top: 5%;
+}
+
+#login{
+    width: 50%;
+    margin-top: 10%;
+}
+
+#formRegister{
+    width: 50%;
+    margin-top: 7%;
 }
 
 .login-text {
-    margin-left: 15%;
-    margin-bottom: -5%;
+    margin-top: 5%;
+}
+
+#btn-login{
+    width: 65%;
+    margin-top: 15%;
+    font-size: 15pt;
+}
+
+#btn-register {
+    width: 65%;
     margin-top: 10%;
     font-size: 15pt;
 }
 
-#email-text {
-    margin-top: 20%;
-}
-
-.form-login {
-    width: 50%;
-}
-
-input {
-    width: 70%;
-    margin: auto;
-    margin-top: 8%;
-    padding: 1.5%;
-}
-
-button {
+#btn-google,
+#btn-google-register {
+    width: 65%;
+    margin-top: 5%;
     font-size: 15pt;
 }
 
-#btn-login {
-    width: 65%;
-    margin-top: 13%;
-}
-
-#btn-google {
-    width: 65%;
-    margin-top: 6%;
-    margin-bottom: 2%;
-}
-
 .links {
-    margin-top: 5%;
-    margin-bottom: 16%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    font-size: 12pt;
 }
