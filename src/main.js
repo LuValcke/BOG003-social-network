@@ -1,40 +1,32 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { createUser, signIn, signInWithGoogle } from './lib/index.js';
+import { login } from "./lib/view/templateLogin.js";
+import { changeRoute } from "./lib/view/router.js";
 
-document.getElementById("register").addEventListener("click", () => {
-    document.getElementById("formRegister").style.display = "block";
-    document.getElementById("login").style.display = "none";
+const init = () => {
+  document.getElementById("data-router").innerHTML = login();
+  changeRoute(window.location.hash);
+  window.addEventListener("hashchange", () => {
+    changeRoute(window.location.hash);
+  });
+};
 
-})
+window.addEventListener("load", init);
 
-document.getElementById("signUp").addEventListener("click", () => {
-    document.getElementById("formRegister").style.display = "none";
-    document.getElementById("login").style.display = "block";
 
-})
-
-//Sign Up 
-document.getElementById("btn-register").addEventListener("click", () => {
+  //Sign Up
+  /* document.getElementById("btn-register").addEventListener("click", () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     createUser(email, password);
-})
+  }); */
 
-//Sign In
+  //Sign In
 
-document.getElementById("btn-login").addEventListener("click", () => {
-    const email = document.getElementById("email-login").value;
-    const password = document.getElementById("password-login").value;
-    signIn(email, password);
-})
+/*   
 
-document.getElementById("btn-google-register").addEventListener("click", () => {
+  document.getElementById("btn-google").addEventListener("click", () => {
     signInWithGoogle();
     console.log("ok");
-})
+  }); */
 
-document.getElementById("btn-google").addEventListener("click", () => {
-    signInWithGoogle();
-    console.log("ok");
-})
