@@ -77,12 +77,21 @@ button {
     margin-top: 10%;
 }
 
+
 #btn-google,
 #btn-google-register {
     width: 75%;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+#errormessage{
+    margin:auto;
+    margin-top: 5%;
+    
+    color:#f4f4f4;
+
 }
 
 .links {

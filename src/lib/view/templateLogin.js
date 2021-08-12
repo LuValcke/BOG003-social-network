@@ -12,11 +12,11 @@ export const login = () => {
         <section id="login">
             <div class="form-login">
                 <h3 class="login-text" id="email-text">Correo electrónico</h3>
-                <input id="email-login">
+                <input id="email-login" placeholder="alguien@correo.com">
                 <h3 class="login-text">Contraseña</h3>
-                <input type="password" id="password-login">
+                <input type="password" id="password-login" placeholder="••••••">
+                <span id="errormessage" required></span>
                 <button id="btn-login">Iniciar sesión</button>
-                <span id="errormessage"></span>
                 <button id="btn-google">Ingresar con Google</button>
                 <div class="links">
                     <h4>¿No tienes una cuenta?</h4>
@@ -35,20 +35,29 @@ export const login = () => {
     btnLogin.addEventListener('click', () => {
         const email = main.querySelector("#email-login").value;
         const password = main.querySelector("#password-login").value;
-        signIn(email, password)
-            .catch(error => {
+        signIn(email, password).catch(error => {
+                console.log(error);
                 const errorCode = error.code;
-                //const errorMessage = error.message;
-                const errorMensaje = main.querySelector('#errormessage');
+                
+                const errorMessage = main.querySelector('#errormessage');
                 switch (errorCode) {
                     case 'auth/invalid-email':
-                        errorMensaje.innerHTML = '⚠️ Correo inválido';
+                        errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
                         break;
+                    case 'auth/wrong-password':
+                        errorMessage.innerHTML = '⚠️ La contraseña ingresada es incorrecta';
+                        break;
+                    case 'auth/too-many-requests':
+                        errorMessage.innerHTML = '⚠️ Has superado el número de intentos para ingresar';
+                        break;
+                    case 'auth/user-not-found':
+                            errorMessage.innerHTML = '⚠️ El usuario no se encuentra registrado';
+                            break;
                     default:
-                        errorMensaje.innerHTML = '⚠️ Ha ocurrido un error inesperado';
-                        break;
-                }
-            })
+                            errorMessage.innerHTML = "⚠️ Ha ocurrido un error inesperado";
+                            break;
+                } 
+            })  
 
 
     })
