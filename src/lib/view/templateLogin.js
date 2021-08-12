@@ -16,6 +16,7 @@ export const login = () => {
                 <h3 class="login-text">Contraseña</h3>
                 <input type="password" id="password-login">
                 <button id="btn-login">Iniciar sesión</button>
+                <span id="errormessage"></span>
                 <button id="btn-google">Ingresar con Google</button>
                 <div class="links">
                     <h4>¿No tienes una cuenta?</h4>
@@ -34,11 +35,26 @@ export const login = () => {
     btnLogin.addEventListener('click', () => {
         const email = main.querySelector("#email-login").value;
         const password = main.querySelector("#password-login").value;
-        signIn(email, password);
+        signIn(email, password)
+            .catch(error => {
+                const errorCode = error.code;
+                //const errorMessage = error.message;
+                const errorMensaje = main.querySelector('#errormessage');
+                switch (errorCode) {
+                    case 'auth/invalid-email':
+                        errorMensaje.innerHTML = '⚠️ Correo inválido';
+                        break;
+                    default:
+                        errorMensaje.innerHTML = '⚠️ Ha ocurrido un error inesperado';
+                        break;
+                }
+            })
+
+
     })
     btnGoogle.addEventListener("click", () => {
-      signInWithGoogle();
-      console.log("ok");
+        signInWithGoogle();
+        console.log("ok");
     });
 
     return main;

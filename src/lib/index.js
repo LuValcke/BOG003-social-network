@@ -3,11 +3,14 @@
 export const createUser = (email, password) => {
     auth
         .createUserWithEmailAndPassword(email, password)
+
 };
 
 export const signIn = (email, password) => {
-    auth
+    return auth
         .signInWithEmailAndPassword(email, password)
+
+
 };
 
 export const signInWithGoogle = () => {
