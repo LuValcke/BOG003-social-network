@@ -14,19 +14,20 @@ export const changeRoute = (hash) => {
 const showTemplate = (hash) => {
     
     const containerRoot = document.getElementById('data-router');
-    containerRoot.innerHTML = login();
-
+    containerRoot.innerHTML = '';
+    console.log("función showteplate")
     switch(hash) {
-        case'':
-
-        case '#/':
+        case  '':
             containerRoot.appendChild(login());
+            console.log("case vacio");
             break;
         case '#/login':
             containerRoot.appendChild(login());
+            console.log("Login");
             break;
         case '#/register':
             containerRoot.appendChild(register());
+            console.log("Register");
             break;
         default:
             containerRoot.innerHTML = 'Not Found'

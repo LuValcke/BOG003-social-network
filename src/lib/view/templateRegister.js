@@ -40,7 +40,7 @@ export const register = () => {
     })
     btnGoogleRegister.addEventListener("click", () => {
       signInWithGoogle();
-      console.log("ok");
     });
+    //console.log(viewRegister, divRegister);
     return divRegister;
 }

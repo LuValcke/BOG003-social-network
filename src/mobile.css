@@ -9,7 +9,9 @@ body {
     width: auto;
     font-family: 'Montserrat', sans-serif;
 }
-
+#data-router{
+    width: auto;
+}
 main {
     width: 100%;
 }
