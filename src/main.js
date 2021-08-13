@@ -1,17 +1,15 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { changeRoute } from "./lib/view/router.js";
+import { changeRoute } from './lib/view/router.js';
 
 const init = () => {
   /* Esta función se encarga de llamar a la función changeRoute y le pasa el hash tanto inicialmente
   como cuando cambie el hash  */
   changeRoute(window.location.hash);
-  window.addEventListener("hashchange", () => {
+  window.addEventListener('hashchange', () => {
     changeRoute(window.location.hash);
   });
 };
 
 // Esta línea de código llama a la función init una vez se cargue la página
-window.addEventListener("load", init);
-
-
+window.addEventListener('load', init);

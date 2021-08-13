@@ -1,7 +1,7 @@
-import { createUser, signInWithGoogle } from "../index.js";
-export const register = () => {
+import { createUser, signInWithGoogle } from '../index.js';
 
-  //Esta variable almacena la porción de html a adjuntar en el body
+export const register = () => {
+  // Esta variable almacena la porción de html a adjuntar en el body
   const viewRegister = `
             <section class="description">
                 <figure>
@@ -29,30 +29,28 @@ export const register = () => {
                 </div>
             </section>
     `;
-  // Aquí se crea el div contenedor donde se adjunta la variable viewRegister 
-  const divRegister = document.createElement("div");
-  divRegister.className = "login";
+  // Aquí se crea el div contenedor donde se adjunta la variable viewRegister
+  const divRegister = document.createElement('div');
+  divRegister.className = 'login';
   divRegister.innerHTML = viewRegister;
 
-  //Aquí se crean las variables para llamar a los botones que tendrán un evento click
-  const btnRegister = divRegister.querySelector("#btn-register");
-  const btnGoogleRegister = divRegister.querySelector("#btn-google-register");
+  // Aquí se crean las variables para llamar a los botones que tendrán un evento click
+  const btnRegister = divRegister.querySelector('#btn-register');
+  const btnGoogleRegister = divRegister.querySelector('#btn-google-register');
 
-  /*Aquí se le agrega el evento click al botón register, se capturan los valores de los inputs 
+  /* Aquí se le agrega el evento click al botón register, se capturan los valores de los inputs
   y se hacen las validaciones respectivas (capturar errores) */
-  btnRegister.addEventListener("click", () => {
-    const email = divRegister.querySelector("#email").value;
-    const password = divRegister.querySelector("#password").value;
+  btnRegister.addEventListener('click', () => {
+    const email = divRegister.querySelector('#email').value;
+    const password = divRegister.querySelector('#password').value;
 
     createUser(email, password).catch((error) => {
-      console.log(error);
       const errorCode = error.code;
 
-      
-      const errorMessage = divRegister.querySelector("#errormessage");
+      const errorMessage = divRegister.querySelector('#errormessage');
       switch (errorCode) {
-        case "auth/invalid-email":
-          errorMessage.innerHTML = "⚠️ Por favor ingrese un correo válido";
+        case 'auth/invalid-email':
+          errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
           break;
         case 'auth/email-already-in-use':
           errorMessage.innerHTML = '⚠️ Ya existe un usuario con este correo';
@@ -61,16 +59,16 @@ export const register = () => {
           errorMessage.innerHTML = '⚠️ La contraseña debe contener al menos 6 dígitos';
           break;
         default:
-          errorMessage.innerHTML = "⚠️ Ha ocurrido un error inesperado";
+          errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
           break;
-        }
+      }
     });
   });
 
-  //Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
-  btnGoogleRegister.addEventListener("click", () => {
+  // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
+  btnGoogleRegister.addEventListener('click', () => {
     signInWithGoogle();
   });
-  
+
   return divRegister;
 };

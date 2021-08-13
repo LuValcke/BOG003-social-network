@@ -1,21 +1,12 @@
 // importamos la funcion que vamos a testear
-import { myFunction, signIn } from '../src/lib/index';
 
-describe('myFunction', () => {
-  it('debería ser una función', () => {
-    expect(typeof myFunction).toBe('function');
-  });
-});
+import { signIn } from '../src/lib/index.js';
 
-
-/* describe('signIn', () => {
-  it('Debería poder iniciar sesión', (done) => {
-    
-    signIn('soy@gmail.com', '12345678').then((email) => {
-      
-      expect(email).toBe('soy@gmail.com');
+describe('signIn', () => {
+  it('Debería retornar error en password', (done) => {
+    signIn('juesdavajovi2426@gmail.com', '123456').catch((error) => {
+      expect(error.code).toBe('auth/wrong-password');
       done();
     });
   });
-}); */
-
+});
