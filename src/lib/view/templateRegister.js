@@ -1,6 +1,7 @@
 import { createUser, signInWithGoogle } from "../index.js";
 export const register = () => {
-  const divRegister = document.createElement("div");
+
+  //Esta variable almacena la porción de html a adjuntar en el body
   const viewRegister = `
             <section class="description">
                 <figure>
@@ -28,12 +29,17 @@ export const register = () => {
                 </div>
             </section>
     `;
+  // Aquí se crea el div contenedor donde se adjunta la variable viewRegister 
+  const divRegister = document.createElement("div");
   divRegister.className = "login";
   divRegister.innerHTML = viewRegister;
 
+  //Aquí se crean las variables para llamar a los botones que tendrán un evento click
   const btnRegister = divRegister.querySelector("#btn-register");
   const btnGoogleRegister = divRegister.querySelector("#btn-google-register");
 
+  /*Aquí se le agrega el evento click al botón register, se capturan los valores de los inputs 
+  y se hacen las validaciones respectivas (capturar errores) */
   btnRegister.addEventListener("click", () => {
     const email = divRegister.querySelector("#email").value;
     const password = divRegister.querySelector("#password").value;
@@ -61,6 +67,7 @@ export const register = () => {
     });
   });
 
+  //Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
   btnGoogleRegister.addEventListener("click", () => {
     signInWithGoogle();
   });

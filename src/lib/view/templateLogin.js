@@ -1,5 +1,7 @@
 import { signIn, signInWithGoogle } from "../index.js";
 export const login = () => {
+
+    //Esta variable almacena la porción de html a adjuntar en el body
     const viewLogin = `
         <section class="description">
             <figure>
@@ -25,13 +27,17 @@ export const login = () => {
             </div>
         </section>
     `
+    // Aquí se crea el div contenedor donde se adjunta la variable viewLogin
     const main = document.createElement('div');
     main.className = 'login';
     main.innerHTML = viewLogin;
 
+    //Aquí se crean las variables para llamar a los botones que tendrán un evento click
     const btnLogin = main.querySelector('#btn-login');
     const btnGoogle = main.querySelector('#btn-google');
 
+    /*Aquí se le agrega el evento click al botón login, se capturan los valores de los inputs 
+     y se hacen las validaciones respectivas (capturar errores) */
     btnLogin.addEventListener('click', () => {
         const email = main.querySelector("#email-login").value;
         const password = main.querySelector("#password-login").value;
@@ -58,9 +64,9 @@ export const login = () => {
                             break;
                 } 
             })  
-
-
     })
+
+    //Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
     btnGoogle.addEventListener("click", () => {
         signInWithGoogle();
         console.log("ok");
