@@ -2,11 +2,13 @@
 
 import { signIn } from '../src/lib/index.js';
 
-describe('signIn', () => {
-  it('Debería retornar error en password', (done) => {
-    signIn('juesdavajovi2426@gmail.com', '123456').catch((error) => {
-      expect(error.code).toBe('auth/wrong-password');
-      done();
+// funcion de firebase de iniciar sesion
+describe('Iniciar sesion', () => {
+    it('Debería poder iniciar sesión', (done) => {
+        signIn('soyuncacahuate@gmail.com', '12345678').then((user) => {
+            expect(user.email).toBe('soyuncacahuate@gmail.com');
+            expect(user.isAnonymous).toBe(false);
+            done();
+        });
     });
-  });
 });
