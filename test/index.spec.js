@@ -1,6 +1,6 @@
 // importamos la funcion que vamos a testear
 
-import { signIn } from '../src/lib/index.js';
+/* import { signIn } from '../src/lib/index.js';
 
 // funcion de firebase de iniciar sesion
 describe('Iniciar sesion', () => {
@@ -33,7 +33,7 @@ describe('Iniciar sesion', () => {
       done();
     });
   });
-});
+}); */
 
 /* // test crear un nuevo usuario
 describe('Crear un usuario', () => {
@@ -54,3 +54,29 @@ describe('Iniciar sesion con google', () => {
     });
   });
 }); */
+
+// configurando firebase moc
+import { signIn } from '../src/lib/index.js';
+
+const firebasemock = require('firebase-mock');
+
+const mockauth = new firebasemock.MockFirebase();
+const mockfirestore = new firebasemock.MockFirestore();
+mockfirestore.autoFlush();
+mockauth.autoFlush();
+
+/* global.firebase = firebasemock.MockFirebaseSdk(
+  (path) => (path ? mockdatabase.child(path) : null),
+  () => mockauth,
+  () => mockfirestore,
+);  */
+
+describe('signIn', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof (signIn)).toBe('function');
+  });
+  it('Deberia poder iniciar sesion', () => signIn('lore4@gmail', '123456')
+    .then((user) => {
+      expect(user.email).toBe('lore4@gmail');
+    }));
+});
