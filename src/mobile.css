@@ -126,6 +126,10 @@ button {
     justify-self: center;
 }
 
+.icons{
+    display: none;
+}
+
 .footer-feed{
     position: fixed;
     width: 100%;

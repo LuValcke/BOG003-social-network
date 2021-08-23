@@ -41,28 +41,32 @@ export const login = () => {
   btnLogin.addEventListener('click', () => {
     const email = main.querySelector('#email-login').value;
     const password = main.querySelector('#password-login').value;
-    signIn(email, password).catch((error) => {
-      const errorCode = error.code;
+    signIn(email, password)
+      .then(() => {
+        window.location.hash = '#/feed';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
 
-      const errorMessage = main.querySelector('#errormessage');
-      switch (errorCode) {
-        case 'auth/invalid-email':
-          errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
-          break;
-        case 'auth/wrong-password':
-          errorMessage.innerHTML = '⚠️ La contraseña ingresada es incorrecta';
-          break;
-        case 'auth/too-many-requests':
-          errorMessage.innerHTML = '⚠️ Has superado el número de intentos para ingresar';
-          break;
-        case 'auth/user-not-found':
-          errorMessage.innerHTML = '⚠️ El usuario no se encuentra registrado';
-          break;
-        default:
-          errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
-          break;
-      }
-    });
+        const errorMessage = main.querySelector('#errormessage');
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
+            break;
+          case 'auth/wrong-password':
+            errorMessage.innerHTML = '⚠️ La contraseña ingresada es incorrecta';
+            break;
+          case 'auth/too-many-requests':
+            errorMessage.innerHTML = '⚠️ Has superado el número de intentos para ingresar';
+            break;
+          case 'auth/user-not-found':
+            errorMessage.innerHTML = '⚠️ El usuario no se encuentra registrado';
+            break;
+          default:
+            errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
+            break;
+        }
+      });
   });
 
   // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle

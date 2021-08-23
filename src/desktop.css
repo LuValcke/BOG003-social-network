@@ -61,3 +61,34 @@
     margin-bottom: 5%;
     font-size: 12pt;
 }
+
+.header-feed{
+    height: 12vh;
+    grid-template-columns: 20% 70% 10%;
+    grid-template-rows: 40% 60%;
+    grid-template-areas: 
+    "logo . ." 
+    "logo . icons";
+    
+}
+
+.logo-feed{
+    width: 50%;
+    grid-area: logo;
+    
+}
+
+.icons{
+    display: block;
+    justify-content: end;
+    grid-area: icons;
+}
+
+.imgHome-header, .imgLogout-header{
+    width: 20%;
+    
+}
+
+.footer-feed{
+    display: none;
+}

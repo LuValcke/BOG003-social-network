@@ -14,15 +14,18 @@ global.firebase = mockSdk;
 
 describe('createUser', () => {
   it('Deberia ser una funcion', () => {
-    expect(typeof (createUser)).toBe('function');
+    expect(typeof createUser).toBe('function');
   });
   it('Deberia poder crear un nuevo usuario', async () => {
     createUser('laboratoria1@gmail.com', '12345678');
 
-    await mockSdk.auth().getUserByEmail('laboratoria1@gmail.com').then((result) => {
-      expect(result.email).toBe('laboratoria1@gmail.com');
-      expect(typeof result).toBe('object');
-    });
+    await mockSdk
+      .auth()
+      .getUserByEmail('laboratoria1@gmail.com')
+      .then((result) => {
+        expect(result.email).toBe('laboratoria1@gmail.com');
+        expect(typeof result).toBe('object');
+      });
   });
 });
 
@@ -42,20 +45,20 @@ describe('createUser', () => {
 
 describe('signIn', () => {
   it('Deberia ser una funcion', () => {
-    expect(typeof (signIn)).toBe('function');
+    expect(typeof signIn).toBe('function');
   });
   it('Deberia poder iniciar sesion', async () => {
-    signIn('laboratoria1@gmail.com', '12345678');
-    await mockSdk.auth().changeAuthState({
+    await signIn('laboratoria1@gmail.com', '12345678');
+    /* await mockSdk.auth().changeAuthState({
       email: 'laboratoria1@gmail.com',
-    });
+    }); */
     expect(window.location.hash).toBe('#/feed');
   });
 });
 
 describe('signInWithGoogle', () => {
   it('Deberia ser una funcion', () => {
-    expect(typeof (signInWithGoogle)).toBe('function');
+    expect(typeof signInWithGoogle).toBe('function');
   });
   it('Deberia poder iniciar sesion con Google', () => signInWithGoogle().then((result) => {
     expect(typeof result).toBe('object');

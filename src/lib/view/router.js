@@ -8,7 +8,7 @@ const showTemplate = (hash) => {
   // console.log("función showteplate")
   switch (hash) {
     case '':
-      containerRoot.appendChild(feed());
+      containerRoot.appendChild(login());
       // console.log('case vacio');
       break;
     case '#/login':
