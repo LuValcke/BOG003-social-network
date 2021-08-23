@@ -27,6 +27,10 @@ describe('createUser', () => {
         expect(typeof result).toBe('object');
       });
   });
+  it('Deberia poder iniciar sesion', async () => {
+    await createUser('laboratoria2@gmail.com', '12345678');
+    expect(window.location.hash).toBe('#/login');
+  });
 });
 
 /* describe('signIn', () => {
@@ -49,9 +53,6 @@ describe('signIn', () => {
   });
   it('Deberia poder iniciar sesion', async () => {
     await signIn('laboratoria1@gmail.com', '12345678');
-    /* await mockSdk.auth().changeAuthState({
-      email: 'laboratoria1@gmail.com',
-    }); */
     expect(window.location.hash).toBe('#/feed');
   });
 });

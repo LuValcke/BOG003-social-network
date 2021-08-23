@@ -44,7 +44,11 @@ export const register = () => {
     const email = divRegister.querySelector('#email').value;
     const password = divRegister.querySelector('#password').value;
 
-    createUser(email, password).catch((error) => {
+    createUser(email, password)
+    .then(()=> {
+      divRegister.querySelector('#errormessage').innerHTML='¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
+    })
+    .catch((error) => {
       const errorCode = error.code;
 
       const errorMessage = divRegister.querySelector('#errormessage');
