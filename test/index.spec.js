@@ -1,59 +1,75 @@
 // importamos la funcion que vamos a testear
+import { createUser, signIn, signInWithGoogle } from '../src/lib/index.js';
 
-/* import { signIn } from '../src/lib/index.js';
+const firebaseMock = require('firebase-mock');
 
-// funcion de firebase de iniciar sesion
-describe('Iniciar sesion', () => {
-  it('Debería poder iniciar sesión', (done) => {
-    signIn('soyuncacahuate@gmail.com', '12345678').then((user) => {
-      expect(user.email).toBe('soyuncacahuate@gmail.com');
-      expect(user.isAnonymous).toBe(false);
-      done();
+const mockAuth = new firebaseMock.MockAuthentication();
+
+const mockSdk = new firebaseMock.MockFirebaseSdk(
+    () => null,
+    () => mockAuth,
+);
+mockSdk.auth().autoFlush();
+global.firebase = mockSdk;
+
+describe('createUser', () => {
+    it('Deberia ser una funcion', () => {
+        expect(typeof(createUser)).toBe('function');
     });
-  });
+    it('Deberia poder crear un nuevo usuario', async() => {
+        createUser('laboratoria1@gmail.com', '12345678');
+
+        await mockSdk.auth().getUserByEmail('laboratoria1@gmail.com').then((result) => {
+            expect(result.email).toBe('laboratoria1@gmail.com');
+            expect(typeof result).toBe('object');
+        });
+    });
 });
 
-// configurando firebase mock
-const firebasemock = require('firebase-mock');
+/* describe('signIn', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof (createUser)).toBe('function');
+  });
+  it('Deberia poder loguear el usuario', async () => {
+    signIn('laboratoria@gmail.com', '12345678');
 
-const mockauth = new firebasemock.MockAuthentication();
-mockauth.autoFlush();
-
-global.firebase = firebasemock.MockFirebaseSdk(
-  () => null,
-  () => mockauth,
-);
-
-// funcion de firebase de iniciar sesion
-describe('Iniciar sesion', () => {
-  it('Debería poder iniciar sesión', (done) => {
-    signIn('soyuncacahuate@gmail.com', '12345678').then((user) => {
-      expect(user.email).toBe('soyuncacahuate@gmail.com');
-      expect(user.isAnonymous).toBe(false);
-      done();
+    await mockSdk.auth().getUserByEmail('laboratoria@gmail.com').then((result) => {
+      expect(result.email).toBe('laboratoria@gmail.com');
+      expect(typeof result).toBe('object');
     });
   });
 }); */
 
-/* // test crear un nuevo usuario
-describe('Crear un usuario', () => {
-  it('Debería poder registrarse con email szapata013@gmail.com y password 12345678', (done) => {
-    createNewUser('szapata013@gmail.com', '12345678').then((user) => {
-      expect(user.email).toBe('szapata013@gmail.com');
-      expect(user.password).toBe('12345678');
-      done();
+describe('signIn', () => {
+    it('Deberia ser una funcion', () => {
+        expect(typeof(signIn)).toBe('function');
     });
-  });
+    it('Deberia poder iniciar sesion', async() => {
+        signIn('laboratoria1@gmail.com', '12345678');
+        await mockSdk.auth().changeAuthState({
+            email: 'laboratoria1@gmail.com',
+        });
+        expect(window.location.hash).toBe('#/feed');
+    });
+});
+
+describe('signInWithGoogle', () => {
+    it('Deberia ser una funcion', () => {
+        expect(typeof(signInWithGoogle)).toBe('function');
+    });
+    it('Deberia poder iniciar sesion con Google', () => signInWithGoogle().then((result) => {
+        expect(typeof result).toBe('object');
+    }));
 });
 
 // funcion de iniciar sesion con google
 describe('Iniciar sesion con google', () => {
-  it('Deberia iniciar sesion con Google', () => {
-    signInWithGoogle().then((user) => {
-      expect(user.isAnonymous).toBe(false);
+    it('Deberia iniciar sesion con Google', () => {
+        signInWithGoogle().then((user) => {
+            expect(user.isAnonymous).toBe(false);
+        });
     });
-  });
-}); */
+});
 
 // configurando firebase moc
 import { signIn } from '../src/lib/index.js';
@@ -72,11 +88,11 @@ mockauth.autoFlush();
 );  */
 
 describe('signIn', () => {
-  it('Deberia ser una funcion', () => {
-    expect(typeof (signIn)).toBe('function');
-  });
-  it('Deberia poder iniciar sesion', () => signIn('lore4@gmail', '123456')
-    .then((user) => {
-      expect(user.email).toBe('lore4@gmail');
-    }));
+    it('Deberia ser una funcion', () => {
+        expect(typeof(signIn)).toBe('function');
+    });
+    it('Deberia poder iniciar sesion', () => signIn('lore4@gmail', '123456')
+        .then((user) => {
+            expect(user.email).toBe('lore4@gmail');
+        }));
 });

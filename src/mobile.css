@@ -110,3 +110,72 @@ button {
     cursor: pointer;
     margin-left: 2%;
 }
+
+.header-feed{
+    display: grid;
+    width: auto;
+    background-color: #F9CB24;
+    box-shadow: 0px 6px 11px 5px rgba(0,0,0,0.67);
+}
+
+.logo-feed{
+    height: 75%;
+    width: 35%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    justify-self: center;
+}
+
+.footer-feed{
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    background-color: #F9CB24;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0px -6px 11px 5px rgba(0,0,0,0.67);
+}
+
+.imgHome, .imgPost, .imgLogout{
+    height: 40px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.post{
+    z-index: -3;
+    background-color: #2D2E2E;
+    border-radius: 5px;
+    color: #f4f4f4;
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 30% 50% 20%;
+    grid-template-areas: "imgProfile name name" "textPost textPost textPost" ". . like";
+}
+
+.imgProfile{
+    grid-area: imgProfile;
+    height: 75%;
+    place-self: center;
+}
+
+#userName{
+    grid-area: name;
+    align-self: center;
+}
+
+#textPost{
+    grid-area: textPost;
+    place-self: center;
+    margin-left: 5%;
+    margin-right: 3%;
+}
+
+.like{
+    grid-area: like;
+    height: 50%;
+    align-self: center;
+    justify-self: end;
+    margin-right: 30%;
+}

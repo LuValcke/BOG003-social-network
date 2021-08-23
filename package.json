@@ -25,13 +25,16 @@
         "eslint-config-airbnb-base": "^14.2.0",
         "eslint-plugin-import": "^2.18.2",
         "eslint-plugin-jest": "^24.1.0",
-        "firestore-jest-mock": "^0.16.0",
+        "firebase-mock": "^2.3.2",
         "htmlhint": "^0.15.1",
         "jest": "^27.0.1",
         "regenerator-runtime": "^0.13.1",
         "serve": "^12.0.0",
         "stylelint": "^13.13.1",
         "stylelint-config-recommended": "^5.0.0"
+    },
+    "jest": {
+        "testEnvironment": "jsdom"
     },
     "engines": {
         "node": ">=10"
