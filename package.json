@@ -33,6 +33,9 @@
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "engines": {
     "node": ">=10"
   }

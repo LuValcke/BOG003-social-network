@@ -1,5 +1,6 @@
 import { login } from './templateLogin.js';
 import { register } from './templateRegister.js';
+import { feed } from './templateFeed.js';
 
 const showTemplate = (hash) => {
   const containerRoot = document.getElementById('data-router');
@@ -7,8 +8,8 @@ const showTemplate = (hash) => {
   // console.log("función showteplate")
   switch (hash) {
     case '':
-      containerRoot.appendChild(login());
-      // console.log("case vacio");
+      containerRoot.appendChild(feed());
+      // console.log('case vacio');
       break;
     case '#/login':
       containerRoot.appendChild(login());
@@ -17,6 +18,10 @@ const showTemplate = (hash) => {
     case '#/register':
       containerRoot.appendChild(register());
       // console.log("Register");
+      break;
+    case '#/feed':
+      containerRoot.appendChild(feed());
+      // console.log("Feed");
       break;
     default:
       containerRoot.innerHTML = 'Not Found';
@@ -29,6 +34,8 @@ export const changeRoute = (hash) => {
   if (hash === '#/login') {
     return showTemplate(hash);
   } if (hash === '#/register') {
+    return showTemplate(hash);
+  } if (hash === '#/feed') {
     return showTemplate(hash);
   }
   return showTemplate(hash);
