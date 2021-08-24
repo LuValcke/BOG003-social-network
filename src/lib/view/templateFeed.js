@@ -3,6 +3,10 @@ export const feed = () => {
   const viewFeed = `
         <header class="header-feed">
           <img class="logo-feed" src="img/logo.png"> 
+          <div class="icons">
+            <img class="imgHome-header" src="./img/home.png">
+            <img class="imgLogout-header" src="./img/logout.png">
+          </div>
         </header>
         <main>
           <div class="post">
