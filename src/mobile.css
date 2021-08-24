@@ -155,9 +155,12 @@ button {
     color: #f4f4f4;
     margin-top: 10%;
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 60% 10% 10%;
     grid-template-rows: 30% 50% 20%;
-    grid-template-areas: "imgProfile name name" "textPost textPost textPost" ". . like";
+    grid-template-areas: 
+    "imgProfile name edit delete" 
+    "textPost textPost textPost textPost" 
+    ". . . like";
 }
 
 .imgProfile {
@@ -167,6 +170,19 @@ button {
 }
 
 #userName {
+    align-self: center;
+    justify-self: center;
+    
+}
+
+#editPost {
+    grid-area: edit;
+    align-self: center;
+    justify-self: center;
+}
+
+#deletePost {
+    grid-area: delete;
     align-self: center;
 }
 
@@ -188,4 +204,36 @@ button {
     align-self: center;
     justify-self: end;
     margin-right: 30%;
+}
+
+.createPost {
+    z-index: -3;
+    background-color: #2D2E2E;
+    border-radius: 5px;
+    color: #f4f4f4;
+    display: grid;
+    grid-template-columns: 20% 60% 17%;
+    grid-template-rows: 30% 43% 17%;
+    grid-template-areas: 
+    "imgProfile name ." 
+    "inputPost inputPost inputPost" 
+    ". . postButton";
+}
+
+.inputPost{
+    background-color: #2D2E2E;
+    border-color: #626C66;
+    border-radius: 5px;
+    padding: 1.5%;
+    color: #f4f4f4;
+    grid-area: inputPost;
+    margin-left: 5%;
+    margin-top: 1%;
+    width: 92%;
+    
+}
+
+#postButton{
+    grid-area: postButton;
+    margin-top: 12%;
 }

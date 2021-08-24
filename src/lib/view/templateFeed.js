@@ -4,20 +4,24 @@ export const feed = () => {
         <header class="header-feed">
           <img class="logo-feed" src="img/logo.png"> 
           <div class="icons">
-            <img class="imgHome-header" src="./img/home.png">
-            <img class="imgLogout-header" src="./img/logout.png">
+            <img class="imgHome-header" title="Inicio" src="./img/home.png">
+            <img class="imgLogout-header" title="Cerrar sesión" src="./img/logout.png">
           </div>
         </header>
         <main>
+        <div class="createPost">
+          <img class="imgProfile" src="./img/imgProfile.png">
+          <h3 id="userName">Amandine Perenceja </h3>
+          <textarea class="inputPost" placeholder="Hablemos de cine..."></textarea>
+          <button id="postButton">Publicar</button>
+        </div>
           <div class="post">
             <img class="imgProfile" src="./img/imgProfile.png">
-            <div class="containerUser">
-              <div><h2 id="userName">Amandine Perenceja </h2></div>
-              <div><img id="editPost">🖉</img></div>
-              <div><img id="deletePost">🗑</img></div>
-            </div>
+            <h3 id="userName">Amandine Perenceja </h3>
+            <div id="editPost" title="Editar">🖉</div>
+            <div id="deletePost" title="Borrar">🗑</div>
             <h3 id="textPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus elit a tellus consectetur tempus. Aliquam tristique nisl id. </h3>
-            <img class="like" src="./img/like.png">
+            <img class="like" title="Me gusta" src="./img/like.png">
           </div>
         </main>
         <footer class="footer-feed">

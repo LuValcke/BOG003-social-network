@@ -7,7 +7,7 @@ export const register = () => {
                 <figure>
                     <img class="img-logo" src="img/logo.png">
                 </figure>
-                <p class="description-text">Aquí encontrarás una gran comunidad al rededor del séptimo arte.
+                <p class="description-text">Aquí encontrarás una gran comunidad alrededor del séptimo arte.
                     </br>
                     ¡Únete!</p>
             </section>

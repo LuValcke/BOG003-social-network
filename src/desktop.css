@@ -70,7 +70,7 @@
 }
 
 .logo-feed {
-    width: 50%;
+    width: 55%;
     grid-area: logo;
 }
 
@@ -82,6 +82,7 @@
 .imgHome-header,
 .imgLogout-header {
     width: 22%;
+    cursor: pointer;
 }
 
 .imgLogout-header {
@@ -93,11 +94,14 @@
 }
 
 .post {
-    padding-top: 2%;
     margin: auto;
     width: 60%;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 30% 50% 20%;
+    grid-template-columns: 10% 70% 12% 8%;
+    grid-template-rows: 50% 30% 20%;
+    grid-template-areas: 
+    "imgProfile name edit delete" 
+    "textPost textPost textPost textPost" 
+    ". . . like";
 }
 
 #textPost {
@@ -107,21 +111,44 @@
 
 #userName {
     font-size: 12pt;
-    grid-area: userName;
+    justify-self: left;
     margin-top: 2%;
 }
 
-.containerUser {
-    display: grid;
-    grid-template-columns: 80% 10% 10%;
+.imgProfile {
+    width: 60%;
+    height: 6vh;
+    justify-self: center;
 }
 
 #editPost {
-    margin-right: 50%;
+    justify-self: end;
+    cursor:pointer;
 }
 
-.imgProfile {
-    width: 45%;
+#deletePost {
     justify-self: center;
-    margin-left: 10%;
+    cursor: pointer;
+}
+
+.like{
+    cursor: pointer;
+}
+
+.createPost{
+    width: 60%;
+    margin: auto;
+    margin-bottom: 5px;
+    grid-template-columns: 10% 76% 13%;
+    grid-template-rows: 39% 36% 23%;
+    grid-template-areas: 
+    "imgProfile name ." 
+    "inputPost inputPost inputPost" 
+    ". . postButton";
+}
+
+#postButton{
+    margin-top: 7%;
+    margin-right: 20%;
+    margin-bottom: 2%;
 }
