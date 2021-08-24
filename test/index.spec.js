@@ -12,6 +12,7 @@ const mockSdk = new firebaseMock.MockFirebaseSdk(
 mockSdk.auth().autoFlush();
 global.firebase = mockSdk;
 
+//Test para crear un usuario.
 describe('createUser', () => {
     it('Deberia ser una funcion', () => {
         expect(typeof createUser).toBe('function');
@@ -27,25 +28,9 @@ describe('createUser', () => {
                 expect(typeof result).toBe('object');
             });
     });
-    it('Deberia poder iniciar sesion', async() => {
-        await createUser('laboratoria2@gmail.com', '12345678');
-        expect(window.location.hash).toBe('#/login');
-    });
 });
 
-/* describe('signIn', () => {
-  it('Deberia ser una funcion', () => {
-    expect(typeof (createUser)).toBe('function');
-  });
-  it('Deberia poder loguear el usuario', async () => {
-    signIn('laboratoria@gmail.com', '12345678');
-
-    await mockSdk.auth().getUserByEmail('laboratoria@gmail.com').then((result) => {
-      expect(result.email).toBe('laboratoria@gmail.com');
-      expect(typeof result).toBe('object');
-    });
-  });
-}); */
+//Test para SignIn.
 
 describe('signIn', () => {
     it('Deberia ser una funcion', () => {
@@ -57,6 +42,7 @@ describe('signIn', () => {
     });
 });
 
+//Test para Google.
 describe('signInWithGoogle', () => {
     it('Deberia ser una funcion', () => {
         expect(typeof signInWithGoogle).toBe('function');

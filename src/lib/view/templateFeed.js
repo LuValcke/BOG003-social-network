@@ -1,6 +1,6 @@
 export const feed = () => {
-  // Esta variable almacena la porción de html a adjuntar en el body
-  const viewFeed = `
+    // Esta variable almacena la porción de html a adjuntar en el body
+    const viewFeed = `
         <header class="header-feed">
           <img class="logo-feed" src="img/logo.png"> 
           <div class="icons">
@@ -11,7 +11,11 @@ export const feed = () => {
         <main>
           <div class="post">
             <img class="imgProfile" src="./img/imgProfile.png">
-            <h2 id="userName">Amandine Perenceja</h2>
+            <div class="containerUser">
+              <div><h2 id="userName">Amandine Perenceja </h2></div>
+              <div><img id="editPost">🖉</img></div>
+              <div><img id="deletePost">🗑</img></div>
+            </div>
             <h3 id="textPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus elit a tellus consectetur tempus. Aliquam tristique nisl id. </h3>
             <img class="like" src="./img/like.png">
           </div>
@@ -22,9 +26,9 @@ export const feed = () => {
           <img class="imgLogout" src="./img/logout.png">
         </footer>
       `;
-  // Aquí se crea el div contenedor donde se adjunta la variable viewLogin
-  const main = document.createElement('div');
-  main.className = 'feed';
-  main.innerHTML = viewFeed;
-  return main;
+    // Aquí se crea el div contenedor donde se adjunta la variable viewLogin
+    const main = document.createElement('div');
+    main.className = 'feed';
+    main.innerHTML = viewFeed;
+    return main;
 };

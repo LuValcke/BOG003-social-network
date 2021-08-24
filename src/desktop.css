@@ -23,12 +23,12 @@
     margin-top: 2%;
 }
 
-#login{
+#login {
     width: 50%;
     margin-top: 10%;
 }
 
-#formRegister{
+#formRegister {
     width: 50%;
     margin-top: 7%;
 }
@@ -37,7 +37,7 @@
     margin-top: 5%;
 }
 
-#btn-login{
+#btn-login {
     width: 65%;
     margin-top: 10%;
     font-size: 15pt;
@@ -62,33 +62,66 @@
     font-size: 12pt;
 }
 
-.header-feed{
+.header-feed {
     height: 12vh;
     grid-template-columns: 20% 70% 10%;
-    grid-template-rows: 40% 60%;
-    grid-template-areas: 
-    "logo . ." 
-    "logo . icons";
-    
+    grid-template-rows: 30% 70%;
+    grid-template-areas: "logo . ." "logo . icons";
 }
 
-.logo-feed{
+.logo-feed {
     width: 50%;
     grid-area: logo;
-    
 }
 
-.icons{
+.icons {
     display: block;
-    justify-content: end;
     grid-area: icons;
 }
 
-.imgHome-header, .imgLogout-header{
-    width: 20%;
-    
+.imgHome-header,
+.imgLogout-header {
+    width: 22%;
 }
 
-.footer-feed{
+.imgLogout-header {
+    margin-left: 12%;
+}
+
+.footer-feed {
     display: none;
+}
+
+.post {
+    padding-top: 2%;
+    margin: auto;
+    width: 60%;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 30% 50% 20%;
+}
+
+#textPost {
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+#userName {
+    font-size: 12pt;
+    grid-area: userName;
+    margin-top: 2%;
+}
+
+.containerUser {
+    display: grid;
+    grid-template-columns: 80% 10% 10%;
+}
+
+#editPost {
+    margin-right: 50%;
+}
+
+.imgProfile {
+    width: 45%;
+    justify-self: center;
+    margin-left: 10%;
 }

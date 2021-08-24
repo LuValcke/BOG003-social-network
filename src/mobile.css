@@ -9,9 +9,11 @@ body {
     width: auto;
     font-family: 'Montserrat', sans-serif;
 }
-#data-router{
+
+#data-router {
     width: auto;
 }
+
 main {
     width: 100%;
 }
@@ -77,7 +79,6 @@ button {
     margin-top: 10%;
 }
 
-
 #btn-google,
 #btn-google-register {
     width: 75%;
@@ -86,13 +87,11 @@ button {
     margin-bottom: 5%;
 }
 
-#errormessage{
-    margin:auto;
+#errormessage {
+    margin: auto;
     margin-top: 5%;
     text-align: center;
-    
-    color:#f4f4f4;
-
+    color: #f4f4f4;
 }
 
 .links {
@@ -112,14 +111,14 @@ button {
     margin-left: 2%;
 }
 
-.header-feed{
+.header-feed {
     display: grid;
     width: auto;
     background-color: #F9CB24;
-    box-shadow: 0px 6px 11px 5px rgba(0,0,0,0.67);
+    box-shadow: 0px 6px 11px 5px rgba(0, 0, 0, 0.67);
 }
 
-.logo-feed{
+.logo-feed {
     height: 75%;
     width: 35%;
     margin-top: 3%;
@@ -127,27 +126,29 @@ button {
     justify-self: center;
 }
 
-.icons{
+.icons {
     display: none;
 }
 
-.footer-feed{
+.footer-feed {
     position: fixed;
     width: 100%;
     bottom: 0%;
     background-color: #F9CB24;
     display: flex;
     justify-content: space-evenly;
-    box-shadow: 0px -6px 11px 5px rgba(0,0,0,0.67);
+    box-shadow: 0px -6px 11px 5px rgba(0, 0, 0, 0.67);
 }
 
-.imgHome, .imgPost, .imgLogout{
+.imgHome,
+.imgPost,
+.imgLogout {
     height: 40px;
     margin-top: 1%;
     margin-bottom: 1%;
 }
 
-.post{
+.post {
     z-index: -3;
     background-color: #2D2E2E;
     border-radius: 5px;
@@ -159,25 +160,29 @@ button {
     grid-template-areas: "imgProfile name name" "textPost textPost textPost" ". . like";
 }
 
-.imgProfile{
+.imgProfile {
     grid-area: imgProfile;
     height: 75%;
     place-self: center;
 }
 
-#userName{
-    grid-area: name;
+#userName {
     align-self: center;
 }
 
-#textPost{
+.containerUser {
+    grid-area: name;
+}
+
+#textPost {
     grid-area: textPost;
     place-self: center;
     margin-left: 5%;
     margin-right: 3%;
+    font-weight: normal;
 }
 
-.like{
+.like {
     grid-area: like;
     height: 50%;
     align-self: center;
