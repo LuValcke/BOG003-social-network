@@ -1,6 +1,5 @@
 import { signIn, signInWithGoogle, err } from '../index.js';
 
-
 export const login = () => {
   // Esta variable almacena la porción de html a adjuntar en el body
   const viewLogin = `
