@@ -43,10 +43,14 @@ export const register = () => {
   btnRegister.addEventListener('click', () => {
     const email = divRegister.querySelector('#email').value;
     const password = divRegister.querySelector('#password').value;
-
+    //const userName = divRegister.querySelector('#userName').value;
+    const user = firebase.auth().currentUser;
+    //let userUid = '';
+    //let currentUserName = '';
     createUser(email, password)
       .then(() => {
         divRegister.querySelector('#errormessage').innerHTML = '¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -70,8 +74,9 @@ export const register = () => {
   });
 
   // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
-  btnGoogleRegister.addEventListener('click', () => {
-    signInWithGoogle();
+  btnGoogleRegister.addEventListener('click', async () => {
+    await signInWithGoogle();
+    window.location.hash = '#/feed';
   });
 
   return divRegister;

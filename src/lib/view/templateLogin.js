@@ -67,8 +67,9 @@ export const login = () => {
   });
 
   // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle
-  btnGoogle.addEventListener('click', () => {
-    signInWithGoogle();
+  btnGoogle.addEventListener('click', async () => {
+    await signInWithGoogle();
+    window.location.hash = '#/feed';
   });
 
   return main;
