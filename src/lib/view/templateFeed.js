@@ -1,6 +1,10 @@
+import {
+  createPost, getPosts, onGetPost, deletePost, getPost, updatePost,
+} from '../index.js';
+
 export const feed = () => {
-    // Esta variable almacena la porción de html a adjuntar en el body
-    const viewFeed = `
+  // Esta variable almacena la porción de html a adjuntar en el body
+  const viewFeed = `
         <header class="header-feed">
           <img class="logo-feed" src="img/logo.png"> 
           <div class="icons">
@@ -9,19 +13,15 @@ export const feed = () => {
           </div>
         </header>
         <main>
-        <div class="createPost">
-          <img class="imgProfile" src="./img/imgProfile.png">
-          <h3 id="userName">Amandine Perenceja </h3>
-          <textarea class="inputPost" placeholder="Hablemos de cine..."></textarea>
-          <button id="postButton">Publicar</button>
-        </div>
-          <div class="post">
+        <div class="displayPost">
+          <div class="createPost">
             <img class="imgProfile" src="./img/imgProfile.png">
             <h3 id="userName">Amandine Perenceja </h3>
-            <div id="editPost" title="Editar">🖉</div>
-            <div id="deletePost" title="Borrar">🗑</div>
-            <h3 id="textPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus elit a tellus consectetur tempus. Aliquam tristique nisl id. </h3>
-            <img class="like" title="Me gusta" src="./img/like.png">
+            <textarea class="inputPost" placeholder="Hablemos de cine..."></textarea>
+            <button id="postButton">Publicar</button>
+          </div>
+        </div>
+          <div class="postContainer">
           </div>
         </main>
         <footer class="footer-feed">
@@ -31,8 +31,75 @@ export const feed = () => {
         </footer>
       `;
     // Aquí se crea el div contenedor donde se adjunta la variable viewLogin
-    const main = document.createElement('div');
-    main.className = 'feed';
-    main.innerHTML = viewFeed;
-    return main;
+  const main = document.createElement('div');
+  main.className = 'feed';
+  main.innerHTML = viewFeed;
+
+  const btnPostMobile = main.querySelector('.imgPost');
+
+  btnPostMobile.addEventListener('click', () => {
+    main.querySelector('.displayPost').style.display = 'block';
+  });
+
+  let editStatus = false;
+
+  let id = '';
+
+  const btnPost = main.querySelector('#postButton');
+
+  const post = main.querySelector('.inputPost');
+
+  const postContainer = main.querySelector('.postContainer');
+
+  onGetPost(() => {
+    getPosts().then((querySnapshot) => {
+      postContainer.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+        postContainer.innerHTML += `
+        <div class='post'>
+          <img class="imgProfile" src="./img/imgProfile.png">
+          <h3 id="userName">Amandine Perenceja </h3>
+          <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
+          <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>
+          <h3 id="textPost">${doc.data().post}</h3>
+          <img class="like" title="Me gusta" src="./img/like.png">
+        </div>
+        `;
+        const btnDelete = main.querySelectorAll('.deletePost');
+        btnDelete.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            await deletePost(e.target.dataset.id);
+          });
+        });
+        const btnEdit = main.querySelectorAll('.editPost');
+        btnEdit.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            const docPost = await getPost(e.target.dataset.id);
+            post.value = docPost.data().post;
+            btnPost.innerText = 'Editar';
+            editStatus = true;
+            id = docPost.id;
+          });
+        });
+
+        btnPost.addEventListener('click', async () => {
+          if (!editStatus) {
+            await createPost(post.value);
+          } else {
+            console.log(id);
+            await updatePost(id, {
+              post: post.value,
+            });
+            btnPost.innerText = 'Publicar';
+            editStatus = false;
+            id = '';
+          }
+          post.value = '';
+          post.focus();
+        });
+      });
+    });
+  });
+
+  return main;
 };

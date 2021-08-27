@@ -45,28 +45,28 @@ export const register = () => {
     const password = divRegister.querySelector('#password').value;
 
     createUser(email, password)
-    .then(()=> {
-      divRegister.querySelector('#errormessage').innerHTML='¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
-    })
-    .catch((error) => {
-      const errorCode = error.code;
+      .then(() => {
+        divRegister.querySelector('#errormessage').innerHTML = '¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
 
-      const errorMessage = divRegister.querySelector('#errormessage');
-      switch (errorCode) {
-        case 'auth/invalid-email':
-          errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
-          break;
-        case 'auth/email-already-in-use':
-          errorMessage.innerHTML = '⚠️ Ya existe un usuario con este correo';
-          break;
-        case 'auth/weak-password':
-          errorMessage.innerHTML = '⚠️ La contraseña debe contener al menos 6 dígitos';
-          break;
-        default:
-          errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
-          break;
-      }
-    });
+        const errorMessage = divRegister.querySelector('#errormessage');
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
+            break;
+          case 'auth/email-already-in-use':
+            errorMessage.innerHTML = '⚠️ Ya existe un usuario con este correo';
+            break;
+          case 'auth/weak-password':
+            errorMessage.innerHTML = '⚠️ La contraseña debe contener al menos 6 dígitos';
+            break;
+          default:
+            errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
+            break;
+        }
+      });
   });
 
   // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle

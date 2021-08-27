@@ -96,6 +96,7 @@
 .post {
     margin: auto;
     width: 60%;
+    margin-bottom: 5px;
     grid-template-columns: 10% 70% 12% 8%;
     grid-template-rows: 50% 30% 20%;
     grid-template-areas: 
@@ -121,18 +122,22 @@
     justify-self: center;
 }
 
-#editPost {
+.editPost {
     justify-self: end;
     cursor:pointer;
 }
 
-#deletePost {
+.deletePost {
     justify-self: center;
     cursor: pointer;
 }
 
 .like{
     cursor: pointer;
+}
+
+.displayPost{
+    display: block;
 }
 
 .createPost{
