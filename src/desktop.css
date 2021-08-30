@@ -98,7 +98,7 @@
     width: 60%;
     margin-bottom: 5px;
     grid-template-columns: 10% 70% 12% 8%;
-    grid-template-rows: 50% 30% 20%;
+    grid-template-rows: auto;
     grid-template-areas: 
     "imgProfile name edit delete" 
     "textPost textPost textPost textPost" 
@@ -107,6 +107,7 @@
 
 #date{
     grid-area: date;
+    margin-top: 2%;
 }
 
 #textPost {
@@ -121,8 +122,8 @@
 }
 
 .imgProfile {
-    width: 60%;
-    height: 6vh;
+    width: 7vh;
+    height: 7vh;
     justify-self: center;
 }
 

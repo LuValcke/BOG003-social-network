@@ -4,9 +4,7 @@ import { feed } from './templateFeed.js';
 
 const showTemplate = (hash) => {
   const containerRoot = document.getElementById('data-router');
-  //const currentUser = firebase.auth().currentUser;
   containerRoot.innerHTML = '';
-  //console.log(currentUser, hash);
   switch (hash) {
     case '':
       if (currentUser) {

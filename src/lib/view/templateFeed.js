@@ -5,6 +5,7 @@ import {
   deletePost,
   getPost,
   updatePost,
+  sortPost,
 } from '../index.js';
 
 export const feed = () => {
@@ -61,15 +62,20 @@ export const feed = () => {
 
   const postContainer = main.querySelector('.postContainer');
 
+  const date = new Date().toLocaleDateString('es-Es');
+
+  const time = new Date().toLocaleTimeString('es-Es');
+
   btnPost.addEventListener('click', async () => {
     if (!editStatus) {
-      await createPost(post.value, uid, name);
+      await createPost(post.value, uid, name, date, time);
     } else {
       await updatePost(id, {
         post: post.value,
         uid,
         name,
-        date: new Date(),
+        date,
+        time,
       });
       editStatus = false;
       id = '';
@@ -81,6 +87,7 @@ export const feed = () => {
   onGetPost(() => {
     getPosts().then((querySnapshot) => {
       postContainer.innerHTML = '';
+      console.log(sortPost(querySnapshot, date));
       querySnapshot.forEach((doc) => {
         postContainer.innerHTML += `
         <div class='post'>
@@ -89,7 +96,7 @@ export const feed = () => {
           <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
           <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>
           <h3 id="textPost">${doc.data().post}</h3>
-          <h6 id="date">30 de agosto de 2021 12:36:49 PM</h6>
+          <h6 id="date">${doc.data().time} ${doc.data().date}</h6>
           <img class="like" title="Me gusta" src="./img/like.png">
         </div>
         `;

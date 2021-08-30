@@ -156,7 +156,7 @@ button {
     margin-bottom: 5px;
     display: grid;
     grid-template-columns: 20% 60% 10% 10%;
-    grid-template-rows: 30% 50% 20%;
+    grid-template-rows: auto;
     grid-template-areas: 
     "imgProfile name edit delete" 
     "textPost textPost textPost textPost" 
@@ -168,18 +168,18 @@ button {
     font-weight: lighter;
     margin-left: 5%;
     color: #686e6bad;
+    margin-top: 3%;
 }
 
 .imgProfile {
     grid-area: imgProfile;
-    height: 75%;
+    height: 7vh;
     place-self: center;
+    margin-top: 5%;
 }
 
 #userName {
     align-self: center;
-    justify-self: center;
-    
 }
 
 .editPost {
@@ -203,6 +203,7 @@ button {
     margin-left: 5%;
     margin-right: 3%;
     font-weight: normal;
+    margin-top: 1%;
 }
 
 .like {
