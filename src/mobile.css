@@ -160,7 +160,14 @@ button {
     grid-template-areas: 
     "imgProfile name edit delete" 
     "textPost textPost textPost textPost" 
-    ". . . like";
+    "date date . like";
+}
+
+#date{
+    grid-area: date;
+    font-weight: lighter;
+    margin-left: 5%;
+    color: #686e6bad;
 }
 
 .imgProfile {

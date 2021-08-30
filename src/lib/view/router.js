@@ -4,23 +4,40 @@ import { feed } from './templateFeed.js';
 
 const showTemplate = (hash) => {
   const containerRoot = document.getElementById('data-router');
+  //const currentUser = firebase.auth().currentUser;
   containerRoot.innerHTML = '';
-  // console.log("función showteplate")
+  //console.log(currentUser, hash);
   switch (hash) {
     case '':
-      containerRoot.appendChild(login());
+      if (currentUser) {
+        window.location.hash = '#/feed';
+      } else {
+        containerRoot.appendChild(login());
+      }
       // console.log('case vacio');
       break;
     case '#/login':
-      containerRoot.appendChild(login());
+      if (currentUser) {
+        window.location.hash = '#/feed';
+      } else {
+        containerRoot.appendChild(login());
+      }
       // console.log("Login");
       break;
     case '#/register':
-      containerRoot.appendChild(register());
+      if (currentUser) {
+        window.location.hash = '#/feed';
+      } else {
+        containerRoot.appendChild(register());
+      }
       // console.log("Register");
       break;
     case '#/feed':
-      containerRoot.appendChild(feed());
+      if (currentUser) {
+        containerRoot.appendChild(feed());
+      } else {
+        window.location.hash = '#/login';
+      }
       // console.log("Feed");
       break;
     default:
@@ -30,13 +47,14 @@ const showTemplate = (hash) => {
 
 export const changeRoute = (hash) => {
   /* Este bloque de código extrae el hash y llama a la función ShowTemplate */
-
-  if (hash === '#/login') {
+  setTimeout(() => {
+    if (hash === '#/login') {
+      return showTemplate(hash);
+    } if (hash === '#/register') {
+      return showTemplate(hash);
+    } if (hash === '#/feed') {
+      return showTemplate(hash);
+    }
     return showTemplate(hash);
-  } if (hash === '#/register') {
-    return showTemplate(hash);
-  } if (hash === '#/feed') {
-    return showTemplate(hash);
-  }
-  return showTemplate(hash);
+  }, 100);
 };

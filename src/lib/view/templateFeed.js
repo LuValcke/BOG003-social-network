@@ -9,6 +9,7 @@ import {
 
 export const feed = () => {
   // Esta variable almacena la porción de html a adjuntar en el body
+  const userName = firebase.auth().currentUser.displayName;
   const viewFeed = `
         <header class="header-feed">
           <img class="logo-feed" src="img/logo.png"> 
@@ -21,7 +22,7 @@ export const feed = () => {
         <div class="displayPost">
           <div class="createPost">
             <img class="imgProfile" src="./img/imgProfile.png">
-            <h3 id="userName">Amandine Perenceja </h3>
+            <h3 id="userName">${userName}</h3>
             <textarea class="inputPost" placeholder="Hablemos de cine..."></textarea>
             <button id="postButton">Publicar</button>
           </div>
@@ -54,14 +55,21 @@ export const feed = () => {
 
   const post = main.querySelector('.inputPost');
 
+  const uid = firebase.auth().currentUser.uid;
+
+  const name = firebase.auth().currentUser.displayName;
+
   const postContainer = main.querySelector('.postContainer');
 
   btnPost.addEventListener('click', async () => {
     if (!editStatus) {
-      await createPost(post.value);
+      await createPost(post.value, uid, name);
     } else {
       await updatePost(id, {
         post: post.value,
+        uid,
+        name,
+        date: new Date(),
       });
       editStatus = false;
       id = '';
@@ -77,10 +85,11 @@ export const feed = () => {
         postContainer.innerHTML += `
         <div class='post'>
           <img class="imgProfile" src="./img/imgProfile.png">
-          <h3 id="userName">Amandine Perenceja </h3>
+          <h3 id="userName">${doc.data().name}</h3>
           <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
           <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>
           <h3 id="textPost">${doc.data().post}</h3>
+          <h6 id="date">30 de agosto de 2021 12:36:49 PM</h6>
           <img class="like" title="Me gusta" src="./img/like.png">
         </div>
         `;
@@ -103,6 +112,5 @@ export const feed = () => {
       });
     });
   });
-
   return main;
 };

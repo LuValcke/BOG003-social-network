@@ -71,6 +71,5 @@ export const login = () => {
     await signInWithGoogle();
     window.location.hash = '#/feed';
   });
-
   return main;
 };

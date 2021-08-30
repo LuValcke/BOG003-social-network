@@ -102,7 +102,11 @@
     grid-template-areas: 
     "imgProfile name edit delete" 
     "textPost textPost textPost textPost" 
-    ". . . like";
+    "date date . like";
+}
+
+#date{
+    grid-area: date;
 }
 
 #textPost {

@@ -16,9 +16,12 @@ export const signInWithGoogle = () => {
   return firebase.auth().signInWithPopup(provider);
 }
 
-export const createPost = (post) => {
+export const createPost = (post, uid, name) => {
   return firebase.firestore().collection('posts').doc().set({
-    post
+    post,
+    uid,
+    name,
+    date: new Date(),
   })
 };
 

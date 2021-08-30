@@ -44,6 +44,14 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        var currentUser = null;
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+            } else {
+                currentUser = null;
+            }
+        });
     </script>
 </body>
 

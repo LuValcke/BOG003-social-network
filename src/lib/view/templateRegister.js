@@ -43,18 +43,18 @@ export const register = () => {
   btnRegister.addEventListener('click', () => {
     const email = divRegister.querySelector('#email').value;
     const password = divRegister.querySelector('#password').value;
-    //const userName = divRegister.querySelector('#userName').value;
-    const user = firebase.auth().currentUser;
-    //let userUid = '';
-    //let currentUserName = '';
+    const userName = divRegister.querySelector('#userName').value;
     createUser(email, password)
       .then(() => {
         divRegister.querySelector('#errormessage').innerHTML = '¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
+        const user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: userName,
+        });
         console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
-
         const errorMessage = divRegister.querySelector('#errormessage');
         switch (errorCode) {
           case 'auth/invalid-email':
