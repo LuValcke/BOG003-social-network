@@ -5,7 +5,10 @@ import {
   deletePost,
   getPost,
   updatePost,
-  sortPost,
+  formatDateTime,
+  signOut,
+  updateLikes,
+  removeLikes,
 } from '../index.js';
 
 export const feed = () => {
@@ -62,20 +65,16 @@ export const feed = () => {
 
   const postContainer = main.querySelector('.postContainer');
 
-  const date = new Date().toLocaleDateString('es-Es');
-
-  const time = new Date().toLocaleTimeString('es-Es');
-
   btnPost.addEventListener('click', async () => {
+    const dataTime = new Date().getTime();
     if (!editStatus) {
-      await createPost(post.value, uid, name, date, time);
+      await createPost(post.value, uid, name, dataTime);
     } else {
       await updatePost(id, {
         post: post.value,
         uid,
         name,
-        date,
-        time,
+        dataTime,
       });
       editStatus = false;
       id = '';
@@ -87,7 +86,6 @@ export const feed = () => {
   onGetPost(() => {
     getPosts().then((querySnapshot) => {
       postContainer.innerHTML = '';
-      console.log(sortPost(querySnapshot, date));
       querySnapshot.forEach((doc) => {
         postContainer.innerHTML += `
         <div class='post'>
@@ -96,8 +94,8 @@ export const feed = () => {
           <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
           <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>
           <h3 id="textPost">${doc.data().post}</h3>
-          <h6 id="date">${doc.data().time} ${doc.data().date}</h6>
-          <img class="like" title="Me gusta" src="./img/like.png">
+          <h6 id="date">${formatDateTime(doc.data().dataTime)}</h6>
+          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png">
         </div>
         `;
         const btnDelete = main.querySelectorAll('.deletePost');
@@ -116,7 +114,34 @@ export const feed = () => {
             id = docPost.id;
           });
         });
+        const btnLike = main.querySelectorAll('.like');
+        btnLike.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            const docPost = await getPost(e.target.dataset.id);
+            const like = docPost.data().likes;
+            if (like.includes(uid)) {
+              removeLikes(uid, e.target.dataset.id);
+            } else {
+              updateLikes(uid, e.target.dataset.id);
+            }
+          });
+        });
       });
+    });
+  });
+  const btnLogOut = main.querySelector('.imgLogout-header');
+
+  btnLogOut.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
+    });
+  });
+
+  const btnLogOutMobile = main.querySelector('.imgLogout');
+
+  btnLogOutMobile.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
     });
   });
   return main;
