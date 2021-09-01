@@ -1,6 +1,7 @@
 .login {
     display: flex;
     flex-direction: row;
+    height: 100vh!important;
 }
 
 .description {
@@ -25,12 +26,12 @@
 
 #login {
     width: 50%;
-    margin-top: 10%;
+    align-self: center;
 }
 
 #formRegister {
     width: 50%;
-    margin-top: 7%;
+    align-self: center;
 }
 
 .login-text {
@@ -99,10 +100,10 @@
     margin-bottom: 5px;
     grid-template-columns: 10% 70% 12% 8%;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "imgProfile name edit delete" 
-    "textPost textPost textPost textPost" 
-    "date date . like";
+    grid-template-areas:
+        "imgProfile name edit delete"
+        "textPost textPost textPost textPost"
+        "date date like likesNum";
 }
 
 #date{

@@ -91,11 +91,12 @@ export const feed = () => {
         <div class='post'>
           <img class="imgProfile" src="./img/imgProfile.png">
           <h3 id="userName">${doc.data().name}</h3>
+          ${uid === doc.data().uid ? `
           <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
-          <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>
+          <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>` : ''}
           <h3 id="textPost">${doc.data().post}</h3>
           <h6 id="date">${formatDateTime(doc.data().dataTime)}</h6>
-          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png">
+          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png"><span class="likesNum">${doc.data().likes.length}</span> 
         </div>
         `;
         const btnDelete = main.querySelectorAll('.deletePost');
