@@ -1,5 +1,5 @@
 import MockFirebase from 'mock-cloud-firestore';
-
+// En este archivo se hacen las pruebas para Firestore
 import {
   getPost,
   deletePost,
@@ -71,15 +71,6 @@ describe('updatePost', () => {
           expect(result.post).toBe('Sí nos va a pasar el test');
         });
       }
-    });
-  });
-});
-
-describe('getPosts', () => {
-  it('Debería poder obtener la cantidad de posts', async () => {
-    const posts = await getPosts();
-    posts.forEach(() => {
-      expect(fixtureData.collection.doc.posts).toHaveLength(4);
     });
   });
 });

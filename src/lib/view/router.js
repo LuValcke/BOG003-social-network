@@ -3,6 +3,8 @@ import { register } from './templateRegister.js';
 import { feed } from './templateFeed.js';
 
 const showTemplate = (hash) => {
+  /* Esta función hace las validaciones de email verificado del usuario actual
+  y redirige según corresponda en cada caso */
   const containerRoot = document.getElementById('data-router');
   containerRoot.innerHTML = '';
   switch (hash) {
@@ -12,7 +14,6 @@ const showTemplate = (hash) => {
       } else {
         containerRoot.appendChild(login());
       }
-      // console.log("Login");
       break;
     case '#/register':
       if (currentUser && emailVerified) {
@@ -20,7 +21,6 @@ const showTemplate = (hash) => {
       } else {
         containerRoot.appendChild(register());
       }
-      // console.log("Register");
       break;
     case '#/feed':
       if (currentUser && emailVerified) {
@@ -28,7 +28,6 @@ const showTemplate = (hash) => {
       } else {
         window.location.hash = '#/login';
       }
-      // console.log("Feed");
       break;
     default:
       containerRoot.innerHTML = 'Not Found';

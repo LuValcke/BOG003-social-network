@@ -1,4 +1,4 @@
-// aqui exportaras las funciones que necesites
+// Funciones de Auth y Firestore
 
 export const createUser = (email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
@@ -7,9 +7,6 @@ export const emailVerification = () => firebase.auth().currentUser.sendEmailVeri
 
 export const signIn = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
-  /* .then(() => {
-    window.location.hash = '#/feed';
-  }); */
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -25,10 +22,15 @@ export const createPost = (post, uid, name, dataTime) => firebase.firestore()
     likes: [],
   });
 
+/* La siguiente función obtiene todos los posts y
+los organiza de manera descendente según su fecha y hora */
 export const getPosts = () => firebase.firestore().collection('posts').orderBy('dataTime', 'desc').get();
 
+/* La siguiente función trae un post de acuerdo a su id */
 export const getPost = (id) => firebase.firestore().collection('posts').doc(id).get();
 
+/* La siguiente función actúa como listener trayendo una instantánea
+del documento de inmediato con los contenidos actuales de ese documento. */
 export const onGetPost = (callback) => firebase.firestore().collection('posts').onSnapshot(callback);
 
 export const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();

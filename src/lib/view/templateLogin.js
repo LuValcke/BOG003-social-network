@@ -45,11 +45,13 @@ export const login = () => {
 
     signIn(email, password)
       .then(() => {
-        if (!emailVerified) {
-          errorMessage.innerHTML = '⚠️ Debe validar su correo para iniciar sesión';
-        } else {
-          window.location.hash = '#/feed';
-        }
+        setTimeout(() => {
+          if (!emailVerified) {
+            errorMessage.innerHTML = '⚠️ Debe validar su correo para iniciar sesión';
+          } else {
+            window.location.hash = '#/feed';
+          }
+        }, 1000);
       })
       .catch((error) => {
         const errorCode = error.code;

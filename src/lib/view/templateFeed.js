@@ -40,7 +40,7 @@ export const feed = () => {
           <img class="imgLogout" src="./img/logout.png">
         </footer>
       `;
-  // Aquí se crea el div contenedor donde se adjunta la variable viewLogin
+  // Aquí se crea el div contenedor donde se adjunta la variable viewFeed
   const main = document.createElement('div');
   main.className = 'feed';
   main.innerHTML = viewFeed;
@@ -78,8 +78,10 @@ export const feed = () => {
     if (inputPost.value !== '') {
       const dataTime = new Date().getTime();
       if (!editStatus) {
+        // Se crea post nuevo
         await createPost(post.value, uid, name, dataTime);
       } else {
+        // Se edita un post ya creado
         await updatePost(id, {
           post: post.value,
           uid,
@@ -98,6 +100,8 @@ export const feed = () => {
     }
   });
   onGetPost(() => {
+    /* En este bloque de código se traen y se renderizan cada uno de los post
+    con la funcionalidad de sus botones de editar, borrar, eliminar y like */
     getPosts().then((querySnapshot) => {
       postContainer.innerHTML = '';
       querySnapshot.forEach((doc) => {
@@ -145,6 +149,7 @@ export const feed = () => {
       });
     });
   });
+
   const btnLogOut = main.querySelector('.imgLogout-header');
 
   btnLogOut.addEventListener('click', () => {

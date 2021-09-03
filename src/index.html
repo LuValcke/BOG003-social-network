@@ -44,9 +44,9 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        // Se inicializan las variables para verificar email y usuario 
         var currentUser = null;
         var emailVerified = null;
-        console.log(emailVerified);
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 currentUser = user;

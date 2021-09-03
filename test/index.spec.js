@@ -1,4 +1,4 @@
-// importamos la funcion que vamos a testear
+// En este archivo se hacen las pruebas para autenticación con Firebase
 import {
   createUser,
   signIn,
@@ -41,10 +41,10 @@ describe('signIn', () => {
   it('Deberia ser una funcion', () => {
     expect(typeof signIn).toBe('function');
   });
-  it('Deberia poder iniciar sesion', async () => {
-    await signIn('laboratoria1@gmail.com', '12345678');
-    expect(window.location.hash).toBe('#/feed');
-  });
+  it('Debería poder iniciar sesión', () => signIn('laboratoria@hotmail.com', '123123')
+    .then((user) => {
+      expect(user.email).toBe('laboratoria@hotmail.com');
+    }));
 });
 
 /* Test para Google. */
@@ -57,6 +57,7 @@ describe('signInWithGoogle', () => {
   }));
 });
 
+/* Test para cerrar sesión. */
 describe('Cerrar sesión', () => {
   it('Deberia cerrar sesion', () => {
     signOut().then((user) => {
