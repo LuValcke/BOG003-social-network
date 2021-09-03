@@ -6,14 +6,6 @@ const showTemplate = (hash) => {
   const containerRoot = document.getElementById('data-router');
   containerRoot.innerHTML = '';
   switch (hash) {
-    case '':
-      if (currentUser && emailVerified) {
-        window.location.hash = '#/feed';
-      } else {
-        containerRoot.appendChild(login());
-      }
-      // console.log('case vacio');
-      break;
     case '#/login':
       if (currentUser && emailVerified) {
         window.location.hash = '#/feed';

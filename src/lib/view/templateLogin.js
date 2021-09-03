@@ -46,7 +46,9 @@ export const login = () => {
     signIn(email, password)
       .then(() => {
         if (!emailVerified) {
-          alert('⚠️ Debe validar su correo para iniciar sesión');
+          errorMessage.innerHTML = '⚠️ Debe validar su correo para iniciar sesión';
+        } else {
+          window.location.hash = '#/feed';
         }
       })
       .catch((error) => {

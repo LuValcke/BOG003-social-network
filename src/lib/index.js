@@ -6,10 +6,10 @@ export const createUser = (email, password) => firebase.auth()
 export const emailVerification = () => firebase.auth().currentUser.sendEmailVerification();
 
 export const signIn = (email, password) => firebase.auth()
-  .signInWithEmailAndPassword(email, password)
-  .then(() => {
+  .signInWithEmailAndPassword(email, password);
+  /* .then(() => {
     window.location.hash = '#/feed';
-  });
+  }); */
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
