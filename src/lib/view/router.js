@@ -7,7 +7,7 @@ const showTemplate = (hash) => {
   containerRoot.innerHTML = '';
   switch (hash) {
     case '':
-      if (currentUser) {
+      if (currentUser && emailVerified) {
         window.location.hash = '#/feed';
       } else {
         containerRoot.appendChild(login());
@@ -15,7 +15,7 @@ const showTemplate = (hash) => {
       // console.log('case vacio');
       break;
     case '#/login':
-      if (currentUser) {
+      if (currentUser && emailVerified) {
         window.location.hash = '#/feed';
       } else {
         containerRoot.appendChild(login());
@@ -23,15 +23,15 @@ const showTemplate = (hash) => {
       // console.log("Login");
       break;
     case '#/register':
-      if (currentUser) {
-        window.location.hash = '#/feed';
+      if (currentUser && emailVerified) {
+        window.location.hash = '#/login';
       } else {
         containerRoot.appendChild(register());
       }
       // console.log("Register");
       break;
     case '#/feed':
-      if (currentUser) {
+      if (currentUser && emailVerified) {
         containerRoot.appendChild(feed());
       } else {
         window.location.hash = '#/login';

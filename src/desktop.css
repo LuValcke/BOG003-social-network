@@ -16,7 +16,7 @@
 }
 
 .description-text {
-    font-size: 26pt;
+    font-size: 24pt;
     margin-bottom: 10%;
     line-height: 2;
     margin-left: 8%;
@@ -35,7 +35,7 @@
 }
 
 .login-text {
-    margin-top: 5%;
+    margin-top: 4%;
 }
 
 #btn-login {

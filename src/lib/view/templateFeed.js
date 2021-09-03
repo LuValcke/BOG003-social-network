@@ -27,7 +27,7 @@ export const feed = () => {
           <div class="createPost">
             <img class="imgProfile" src="./img/imgProfile.png">
             <h3 id="userName">${userName}</h3>
-            <textarea class="inputPost" placeholder="Hablemos de cine..."></textarea>
+            <textarea class="inputPost" placeholder="Hablemos de cine... "></textarea>
             <button id="postButton">Publicar</button>
           </div>
         </div>
@@ -44,7 +44,6 @@ export const feed = () => {
   const main = document.createElement('div');
   main.className = 'feed';
   main.innerHTML = viewFeed;
-
   const btnPostMobile = main.querySelector('.imgPost');
 
   btnPostMobile.addEventListener('click', () => {
@@ -65,23 +64,38 @@ export const feed = () => {
 
   const postContainer = main.querySelector('.postContainer');
 
+  const inputPost = main.querySelector('.inputPost');
+
+  inputPost.addEventListener('keydown', () => {
+    btnPost.style = 'background-color: #8B1820';
+  });
+
+  inputPost.addEventListener('blur', () => {
+    btnPost.style = 'background-color: #AFAFAF';
+  });
+
   btnPost.addEventListener('click', async () => {
-    const dataTime = new Date().getTime();
-    if (!editStatus) {
-      await createPost(post.value, uid, name, dataTime);
+    if (inputPost.value !== '') {
+      const dataTime = new Date().getTime();
+      if (!editStatus) {
+        await createPost(post.value, uid, name, dataTime);
+      } else {
+        await updatePost(id, {
+          post: post.value,
+          uid,
+          name,
+          dataTime,
+        });
+        editStatus = false;
+        id = '';
+        btnPost.innerText = 'Publicar';
+      }
+      post.value = '';
+      post.focus();
+      inputPost.placeholder = 'Hablemos de cine... ';
     } else {
-      await updatePost(id, {
-        post: post.value,
-        uid,
-        name,
-        dataTime,
-      });
-      editStatus = false;
-      id = '';
-      btnPost.innerText = 'Publicar';
+      inputPost.placeholder = 'Por favor escribe algo';
     }
-    post.value = '';
-    post.focus();
   });
   onGetPost(() => {
     getPosts().then((querySnapshot) => {
@@ -96,7 +110,8 @@ export const feed = () => {
           <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>` : ''}
           <h3 id="textPost">${doc.data().post}</h3>
           <h6 id="date">${formatDateTime(doc.data().dataTime)}</h6>
-          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png"><span class="likesNum">${doc.data().likes.length}</span> 
+          ${doc.data().likes.includes(uid) ? `
+          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png"><span class="likesNum">${doc.data().likes.length}</span>` : `<img class="like" title="Me gusta" data-id="${doc.id}" src="./img/unlike.png"><span class="likesNum">${doc.data().likes.length}</span>`}
         </div>
         `;
         const btnDelete = main.querySelectorAll('.deletePost');
@@ -145,5 +160,18 @@ export const feed = () => {
       window.location.hash = '#/login';
     });
   });
+
+  const btnHome = main.querySelector('.imgHome-header');
+
+  btnHome.addEventListener('click', () => {
+    window.location.reload();
+  });
+
+  const btnHomeMobile = main.querySelector('.imgHome');
+
+  btnHomeMobile.addEventListener('click', () => {
+    window.location.reload();
+  });
+
   return main;
 };

@@ -1,5 +1,10 @@
 // importamos la funcion que vamos a testear
-import { createUser, signIn, signInWithGoogle } from '../src/lib/index.js';
+import {
+  createUser,
+  signIn,
+  signInWithGoogle,
+  signOut,
+} from '../src/lib/index.js';
 
 const firebaseMock = require('firebase-mock');
 
@@ -50,4 +55,12 @@ describe('signInWithGoogle', () => {
   it('Deberia poder iniciar sesion con Google', () => signInWithGoogle().then((result) => {
     expect(typeof result).toBe('object');
   }));
+});
+
+describe('Cerrar sesión', () => {
+  it('Deberia cerrar sesion', () => {
+    signOut().then((user) => {
+      expect(user).toBe(null);
+    });
+  });
 });

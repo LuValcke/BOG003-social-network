@@ -1,4 +1,4 @@
-import { createUser, signInWithGoogle } from '../index.js';
+import { createUser, signInWithGoogle, emailVerification } from '../index.js';
 
 export const register = () => {
   // Esta variable almacena la porción de html a adjuntar en el body
@@ -14,14 +14,16 @@ export const register = () => {
             <section id="formRegister">
                 <div class="form-login">
                     <h3 class="login-text">Nombre de usuario</h3>
-                    <input id="userName" placeholder="Alguien">
+                    <input id="userName" placeholder="Alguien" required>
                     <h3 class="login-text" id="email-text">Correo electrónico</h3>
                     <input id="email" placeholder="alguien@correo.com">
                     <h3 class="login-text">Contraseña</h3>
                     <input type="password" id="password" placeholder="••••••">
+                    <h3 class="login-text">Confirme su contraseña</h3>
+                    <input type="password" id="passConfirm" placeholder="••••••">
                     <span id="errormessage" required></span>
-                    <button id="btn-register">Registrarse</button>
-                    <button id="btn-google-register">Registrarse con Google</button>
+                    <button type="submit" id="btn-register">Registrarse</button>
+                    <button type="submit" id="btn-google-register">Registrarse con Google</button>
                     <div class="links">
                         <h4>¿Ya tienes una cuenta?</h4>
                         <h4 id="signUp"><a href='#/login'>Inicia sesión</a></h4>
@@ -44,33 +46,42 @@ export const register = () => {
     const email = divRegister.querySelector('#email').value;
     const password = divRegister.querySelector('#password').value;
     const userName = divRegister.querySelector('#userName').value;
-    createUser(email, password)
-      .then(() => {
-        divRegister.querySelector('#errormessage').innerHTML = '¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
-        const user = firebase.auth().currentUser;
-        user.updateProfile({
-          displayName: userName,
+    const passConfirm = divRegister.querySelector('#passConfirm').value;
+    const errorMessage = divRegister.querySelector('#errormessage');
+    if (password === passConfirm && userName !== '') {
+      createUser(email, password)
+        .then(() => {
+          const user = firebase.auth().currentUser;
+          user.updateProfile({
+            displayName: userName,
+          });
+          return emailVerification();
+        })
+        .then(() => {
+          divRegister.querySelector('#errormessage').innerHTML = '¡Usuario creado! &#9989 </br>  Revisa tu bandeja de entrada  para verificar la cuenta';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          switch (errorCode) {
+            case 'auth/invalid-email':
+              errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
+              break;
+            case 'auth/email-already-in-use':
+              errorMessage.innerHTML = '⚠️ Ya existe un usuario con este correo';
+              break;
+            case 'auth/weak-password':
+              errorMessage.innerHTML = '⚠️ La contraseña debe contener al menos 6 dígitos';
+              break;
+            default:
+              errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
+              break;
+          }
         });
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = divRegister.querySelector('#errormessage');
-        switch (errorCode) {
-          case 'auth/invalid-email':
-            errorMessage.innerHTML = '⚠️ Por favor ingrese un correo válido';
-            break;
-          case 'auth/email-already-in-use':
-            errorMessage.innerHTML = '⚠️ Ya existe un usuario con este correo';
-            break;
-          case 'auth/weak-password':
-            errorMessage.innerHTML = '⚠️ La contraseña debe contener al menos 6 dígitos';
-            break;
-          default:
-            errorMessage.innerHTML = '⚠️ Ha ocurrido un error inesperado';
-            break;
-        }
-      });
+    } else if (userName === '') {
+      errorMessage.innerHTML = '⚠️ Debe ingresar nombre de usuario';
+    } else {
+      errorMessage.innerHTML = '⚠️ Las contraseñas no coinciden';
+    }
   });
 
   // Aquí se le agrega el evento click al botón de Google y se llama la función sigInWithGoogle

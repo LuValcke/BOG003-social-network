@@ -62,7 +62,7 @@ input {
 }
 
 button {
-    background-color: #8B1820;
+    background-color:#8B1820;
     box-shadow: inset 0px 4px 4px rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     border-style: none;
@@ -208,11 +208,12 @@ button {
     margin-right: 3%;
     font-weight: normal;
     margin-top: 1%;
+    word-break: break-all;
 }
 
 .like {
+    height: 2vh;
     grid-area: like;
-    height: 50%;
     align-self: center;
     justify-self: end;
 }
@@ -250,6 +251,7 @@ button {
 }
 
 #postButton{
+    background-color: #AFAFAF;
     grid-area: postButton;
     font-size: 9pt;
     margin-top: 6%;
