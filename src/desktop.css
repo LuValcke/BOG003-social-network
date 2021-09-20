@@ -142,6 +142,10 @@
     cursor: pointer;
 }
 
+.unlike{
+    cursor: pointer;
+}
+
 .displayPost{
     display: block;
 }

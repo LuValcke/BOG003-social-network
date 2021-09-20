@@ -103,49 +103,59 @@ export const feed = () => {
     /* En este bloque de código se traen y se renderizan cada uno de los post
     con la funcionalidad de sus botones de editar, borrar, eliminar y like */
     getPosts().then((querySnapshot) => {
-      postContainer.innerHTML = '';
+      postContainer.innerHTML = "";
       querySnapshot.forEach((doc) => {
-        postContainer.innerHTML += `
-        <div class='post'>
-          <img class="imgProfile" src="./img/imgProfile.png">
-          <h3 id="userName">${doc.data().name}</h3>
-          ${uid === doc.data().uid ? `
-          <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
-          <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>` : ''}
-          <h3 id="textPost">${doc.data().post}</h3>
-          <h6 id="date">${formatDateTime(doc.data().dataTime)}</h6>
-          ${doc.data().likes.includes(uid) ? `
-          <img class="like" title="Me gusta" data-id="${doc.id}" src="./img/like.png"><span class="likesNum">${doc.data().likes.length}</span>` : `<img class="like" title="Me gusta" data-id="${doc.id}" src="./img/unlike.png"><span class="likesNum">${doc.data().likes.length}</span>`}
-        </div>
-        `;
-        const btnDelete = main.querySelectorAll('.deletePost');
-        btnDelete.forEach((btn) => {
-          btn.addEventListener('click', async (e) => {
-            await deletePost(e.target.dataset.id);
+        doc.ref
+          .collection("likedBy")
+          .where("uid", "==", uid)
+          .get()
+          .then((likedBySnapshot) => {
+            const likedByCurrentUser = likedBySnapshot.size >= 1;
+
+            postContainer.innerHTML += `
+              <div class='post'>
+                <img class="imgProfile" src="./img/imgProfile.png">
+                <h3 id="userName">${doc.data().name}</h3>
+                ${uid === doc.data().uid? `
+                <div class="editPost" title="Editar" data-id="${doc.id}">🖉</div>
+                <div class="deletePost" title="Borrar" data-id="${doc.id}">🗑</div>`: ""}
+                <h3 id="textPost">${doc.data().post}</h3>
+                <h6 id="date">${formatDateTime(doc.data().dataTime)}</h6>
+                ${likedByCurrentUser ? ` <img class="unlike" title="Ya no me gusta" data-id="${doc.id}" src="./img/like.png">` : `<img class="like" title="Me gusta" data-id="${doc.id}" src="./img/unlike.png">`}
+              </div>
+              `;
+            const btnDelete = main.querySelectorAll(".deletePost");
+            btnDelete.forEach((btn) => {
+              btn.addEventListener("click", async (e) => {
+                await deletePost(e.target.dataset.id);
+              });
+            });
+            const btnEdit = main.querySelectorAll(".editPost");
+            btnEdit.forEach((btn) => {
+              btn.addEventListener("click", async (e) => {
+                const docPost = await getPost(e.target.dataset.id);
+                post.value = docPost.data().post;
+                btnPost.innerText = "Editar";
+                editStatus = true;
+                id = docPost.id;
+              });
+            });
+            const btnLike = main.querySelectorAll(".like");
+            btnLike.forEach((btn) => {
+              btn.addEventListener("click", async (e) => {
+                console.log("updateLikes");
+                updateLikes(uid, name, e.target.dataset.id);
+              });
+            });
+
+            const btnUnlike = main.querySelectorAll(".unlike");
+            btnUnlike.forEach((btn) => {
+              btn.addEventListener("click", async (e) => {
+                  console.log("removeLikes");
+                  removeLikes(uid, e.target.dataset.id);                
+              });
+            });
           });
-        });
-        const btnEdit = main.querySelectorAll('.editPost');
-        btnEdit.forEach((btn) => {
-          btn.addEventListener('click', async (e) => {
-            const docPost = await getPost(e.target.dataset.id);
-            post.value = docPost.data().post;
-            btnPost.innerText = 'Editar';
-            editStatus = true;
-            id = docPost.id;
-          });
-        });
-        const btnLike = main.querySelectorAll('.like');
-        btnLike.forEach((btn) => {
-          btn.addEventListener('click', async (e) => {
-            const docPost = await getPost(e.target.dataset.id);
-            const like = docPost.data().likes;
-            if (like.includes(uid)) {
-              removeLikes(uid, e.target.dataset.id);
-            } else {
-              updateLikes(uid, e.target.dataset.id);
-            }
-          });
-        });
       });
     });
   });
